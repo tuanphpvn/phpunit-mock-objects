@@ -137,6 +137,11 @@ class Framework_MockObjectTest extends TestCase
              ->method('doSomething');
 
         $mock->doSomething();
+
+        $mock->expectCalledOne()
+             ->method('doSomething');
+
+        $mock->doSomething();
     }
 
     public function testMockedMethodIsCalledOnceWithParameter()
@@ -147,6 +152,12 @@ class Framework_MockObjectTest extends TestCase
         $mock->expects($this->once())
              ->method('doSomethingElse')
              ->with($this->equalTo('something'));
+
+        $mock->doSomethingElse('something');
+
+        $mock->expects($this->once())
+             ->method('doSomethingElse')
+             ->withParameter($this->equalTo("something"));
 
         $mock->doSomethingElse('something');
     }
@@ -337,6 +348,14 @@ class Framework_MockObjectTest extends TestCase
         $mock->expects($this->any())
              ->method('doSomething')
              ->willReturnOnConsecutiveCalls('a', 'b', 'c');
+
+        $this->assertEquals('a', $mock->doSomething());
+        $this->assertEquals('b', $mock->doSomething());
+        $this->assertEquals('c', $mock->doSomething());
+
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->willReturnConsecutiveResult('a', 'b', 'c');
 
         $this->assertEquals('a', $mock->doSomething());
         $this->assertEquals('b', $mock->doSomething());
