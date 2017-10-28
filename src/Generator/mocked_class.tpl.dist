@@ -9,6 +9,11 @@
     {
         return $this->__phpunit_getInvocationMocker()->expects($matcher);
     }
+
+    public function expectCalledOne()
+    {
+        return $this->__phpunit_getInvocationMocker()->expectCalledOne();
+    }
 {method}
     public function __phpunit_setOriginalObject($originalObject)
     {

@@ -105,6 +105,21 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
     }
 
     /**
+     * @param PHPUnit_Framework_MockObject_Matcher_Invocation $matcher
+     *
+     * @return PHPUnit_Framework_MockObject_Builder_InvocationMocker
+     */
+    public function expectCalledOne()
+    {
+        $matcher =  new PHPUnit_Framework_MockObject_Matcher_InvokedCount(1);
+        return new PHPUnit_Framework_MockObject_Builder_InvocationMocker(
+            $this,
+            $matcher,
+            $this->configurableMethods
+        );
+    }
+
+    /**
      * @param PHPUnit_Framework_MockObject_Invocation $invocation
      *
      * @return mixed

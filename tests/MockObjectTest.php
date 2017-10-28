@@ -240,6 +240,17 @@ class Framework_MockObjectTest extends TestCase
         $this->assertEquals('d', $mock->doSomething('a', 'b', 'c'));
         $this->assertEquals('h', $mock->doSomething('e', 'f', 'g'));
         $this->assertEquals(null, $mock->doSomething('foo', 'bar'));
+
+        $mock = $this->getMockBuilder(AnInterface::class)
+                     ->getMock();
+
+        $mock->expects($this->any())
+             ->method('doSomething')
+             ->willReturnValueMap($map);
+
+        $this->assertEquals('d', $mock->doSomething('a', 'b', 'c'));
+        $this->assertEquals('h', $mock->doSomething('e', 'f', 'g'));
+        $this->assertEquals(null, $mock->doSomething('foo', 'bar'));
     }
 
     public function testStubbedReturnArgument()

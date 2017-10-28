@@ -126,6 +126,16 @@ class PHPUnit_Framework_MockObject_Builder_InvocationMocker implements PHPUnit_F
     }
 
     /**
+     * @param array $valueMap
+     *
+     * @return PHPUnit_Framework_MockObject_Builder_InvocationMocker
+     */
+    public function willReturnValueMap(array $valueMap)
+    {
+        $this->willReturnMap($valueMap);
+    }
+
+    /**
      * @param mixed $argumentIndex
      *
      * @return PHPUnit_Framework_MockObject_Builder_InvocationMocker
@@ -173,6 +183,16 @@ class PHPUnit_Framework_MockObject_Builder_InvocationMocker implements PHPUnit_F
         $stub = new PHPUnit_Framework_MockObject_Stub_ConsecutiveCalls($values);
 
         return $this->will($stub);
+    }
+
+    /**
+     * @param mixed $values, ...
+     *
+     * @return PHPUnit_Framework_MockObject_Builder_InvocationMocker
+     */
+    public function willReturnConsecutiveResult(...$values)
+    {
+        return $this->willReturnOnConsecutiveCalls(...$values);
     }
 
     /**
@@ -232,6 +252,16 @@ class PHPUnit_Framework_MockObject_Builder_InvocationMocker implements PHPUnit_F
         $this->matcher->parametersMatcher = new PHPUnit_Framework_MockObject_Matcher_Parameters($arguments);
 
         return $this;
+    }
+
+    /**
+     * @param array ...$arguments
+     *
+     * @return PHPUnit_Framework_MockObject_Builder_InvocationMocker
+     */
+    public function withParameter(...$arguments)
+    {
+        return $this->with(...$arguments);
     }
 
     /**
