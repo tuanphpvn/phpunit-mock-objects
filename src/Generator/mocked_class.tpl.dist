@@ -14,6 +14,11 @@
     {
         return $this->__phpunit_getInvocationMocker()->expectCalledOne();
     }
+
+    public function expectNeverCalled()
+    {
+        return $this->__phpunit_getInvocationMocker()->expectNeverCalled();
+    }
 {method}
     public function __phpunit_setOriginalObject($originalObject)
     {

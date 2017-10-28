@@ -20,6 +20,9 @@ class Framework_MockObjectTest extends TestCase
 
         $mock->expects($this->never())
              ->method('doSomething');
+
+        $mock->expectNeverCalled()
+             ->method('doSomething');
     }
 
     public function testMockedMethodIsNeverCalledWithParameter()
